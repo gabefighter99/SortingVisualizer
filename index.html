@@ -8,13 +8,16 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body style="background-color: #485063">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
 	      <a class="navbar-brand" href="#">Sorting Array Visualizer</a>
 				<span style="color:white; display:flex;"> Size:&nbsp;&nbsp;
-					<input type="range" id="myRange" value="30" max="100">
+					<input type="range" id="arrSize" value="30" max="100">
+				</span>
+				<span style="color:white; display:flex;"> Speed:&nbsp;&nbsp;
+					<input type="range" id="speed" value="200" step=10 max="780">
 				</span>
 
 	      <!-- Add a "hamburger". Remember to add jQuery and JavaScript CDNs -->

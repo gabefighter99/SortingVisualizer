@@ -8,13 +8,13 @@ async function insertionSort(){
 			let key = arr[i].style.height;
 			let j = i - 1;
 			arr[i].style.background = "#00ff00"
-			await wait(100);
+			await wait(delay);
 
 			while (j >= 0 && parseInt(key) < parseInt(arr[j].style.height)){
 				arr[j].style.background = "#00ff00";
 				arr[j+1].style.height = arr[j].style.height;
 				j--;
-				await wait(100);
+				await wait(delay);
 
 				// color
 	      for(let k = i; k >= 0; k--){

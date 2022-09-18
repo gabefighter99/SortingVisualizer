@@ -1,9 +1,19 @@
 //range
-var bins = $("#myRange")
+var bins = $("#arrSize")
 bins.on('input', function() {
 	displayArray(bins.val(), 100);
-})
+});
 
+// default delay
+var delay = 200;
+
+var speed = $("#speed");
+speed.on('input', function() {
+	delay = 800 - parseInt(speed.val());
+});
+
+
+//Array Gen
 var newArray = $("#newArray")
 newArray.click(function(){
 	displayArray(bins.val(), 100);

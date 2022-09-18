@@ -1,18 +1,33 @@
 async function partition(arr, lo, hi){
-	var pivot = arr[hi-1].style.height;
-	var i = lo - 1;
+	var pivot = arr[hi].style.height;
+	arr[hi].style.background = "orange";
+	var i = lo; //our pointer
 
-	await wait(100);
+	await wait(delay);
 
-	for(j=lo; j < hi - 1; j++) {
+	for(let j=lo; j < hi; j++) {
 		if (parseInt(arr[j].style.height) < parseInt(pivot)) {
-			i++;
+			arr[i].style.background = "#00ff00"
+			arr[j].style.background = "#00ff00"
+
+			//swap element smaller than pivot with pointer element (aka to the front)
 			swapH(arr[i], arr[j]);
-			await wait(100);
+			await wait(delay);
+
+			arr[i].style.background = "magenta"
+			arr[j].style.background = "magenta"
+
+			//increment pointer
+			i++;
 		}
 	}
-	i++;
-	swapH(arr[i], arr[j]);
+
+	await wait(delay);
+	//swap pivot with last front element. pivot is sorted
+	swapH(arr[i], arr[hi]);
+	arr[hi].style.backgroung = "magenta"
+	arr[i].style.background = "cyan"
+	await wait(delay);
 	return i;
 
 }
@@ -20,10 +35,16 @@ async function partition(arr, lo, hi){
 async function quickSort(arr, lo, hi){
 
 	if (lo < hi){
-	  let mid = partition(arr, lo, hi);
-	  quickSort(arr, lo, mid-1);
-	  quickSort(arr, mid+1, hi);
+	  let mid = await partition(arr, lo, hi);
+	  await quickSort(arr, lo, mid-1);
+	  await quickSort(arr, mid+1, hi);
   }
+	else {
+		if (lo >= 0 && lo < arr.length && hi >= 0 && hi < arr.length){
+			arr[lo].style.background = "cyan"
+			arr[hi].style.background = "cyan"
+		}
+	}
 
 }
 
@@ -34,7 +55,7 @@ $(".quickSort").click(async function(){
     // disableNewArrayBtn();
 		const arr = $(".box-item");
 		console.log(arr);
-    await quickSort(arr, 0, arr.length);
+    await quickSort(arr, 0, arr.length - 1);
     // enableSortingBtn();
     // enableSizeSlider();
     // enableNewArrayBtn();

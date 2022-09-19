@@ -41,6 +41,8 @@ async function quickSort(arr, lo, hi){
   }
 	else {
 		if (lo >= 0 && lo < arr.length && hi >= 0 && hi < arr.length){
+			play_note(arr[lo].style.height);
+			play_note(arr[hi].style.height);
 			arr[lo].style.background = "cyan"
 			arr[hi].style.background = "cyan"
 		}
@@ -53,9 +55,12 @@ $(".quickSort").click(async function(){
     // disableSortingBtn();
     // disableSizeSlider();
     // disableNewArrayBtn();
+		startNoise();
 		const arr = $(".box-item");
 		console.log(arr);
     await quickSort(arr, 0, arr.length - 1);
+		source.frequency.value = 0;
+		source.stop(0);
     // enableSortingBtn();
     // enableSizeSlider();
     // enableNewArrayBtn();

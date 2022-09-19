@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sorting Visualizer</title>
+		<!-- CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="style.css" />
+  </head>
+  <body style="background-color: #485063">
+
+		<div class="window">
+    <div class="window_in">
+      <div class="titlebar">
+        <img src="controls.png" class="control"/>
+        Sort Visualizer
+      </div>
+      <div class="toolbar">
+        <span class="val" id="current_algo"></span>
+				<span style="color:white; display:flex;"> Size:&nbsp;&nbsp;
+					<input type="range" id="arrSize" value="30" max="100">
+				</span>
+				<span style="color:white; display:flex;"> Speed:&nbsp;&nbsp;
+					<input type="range" id="speed" value="200" step=10 max="780">
+				</span>
+      </div>
+      <div class="panel" >
+        <div class="panel_in" style="width: 768px; height: 400px;">
+          <svg id="graph" style="width: 768px; height: 400px; margin:0; padding:0;"></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	<div class="window" style="width: 255px;">
+    <div class="window_in">
+      <div class="titlebar">
+        <img src="controls.png" class="control"/>
+        Parameters
+      </div>
+
+      <div class="frame">
+        <div class="frame_in">
+          <h2>Controls</h2>
+          <div style="color:red; margin: 5px;">Warning: Pressing start will play sounds!</div>
+          <button id="start"><div><span>Start</span></div></button>
+          <button id="halt"><div><span>Halt</span></div></button>
+          <!--<button id="reset"><div><span>Reset</span></div></button>-->
+        </div>
+    </div>
+
+    <div class="frame">
+      <div class="frame_in">
+        <h2>Sort Algorithm</h2>
+        <span class="select_out" style="width: 100%">
+          <select id="algos" size=10 style="width: 100%;">
+						<option value="">InsertionSort</option>
+						<option value="">HeapSort</option>
+						<option value="">MMergeSort</option>
+						<option value="">QuickSort</option>
+						<option value="">Parallel QuickSort</option>
+						<!-- <button type="button" class="btn btn-outline-primary btn-dark insertionSort">InsertionSort</button> -->
+          </select>
+        </span>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="frame_in" style="text-align: left;">
+        <h2>Description</h2>
+        <a id="desc_a" target="_blank"></a>
+        <p id="desc_p"></p>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="frame_in">
+        <h2>Options</h2>
+        <div>
+          <span class="label1">Items in list:</span>
+          <span class="textbox_out">
+            <input data-type="int" id="item_count" value="500">
+          </span>
+        </div>
+        <div>
+          <span class="label1">Update Delay:</span>
+          <span class="textbox_out">
+            <input data-type="int" id="update_delay" value="0">
+          </span>
+        </div>
+        <div>
+          <span class="label1">Group Updates:</span>
+          <span class="textbox_out">
+            <input data-type="int" id="group_updates" value="5">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+		<div class="container">
+			<div class="box"></div>
+		</div>
+		<button type="button" id="newArray" class="btn btn-outline-success btn-dark arrayGen">New Array</button>
+		<button type="button" id="hiDupArray" class="btn btn-outline-success btn-dark arrayGen">Hi-Dup Array</button>
+		<button type="button" id="nearlySortedArray" class="btn btn-outline-success btn-dark arrayGen">Nearly Sorted Array</button>
+
+
+		<script src="randomArrayGenerator.js" type="text/javascript"></script>
+
+
+
+      <!-- Need to have JQuery and Javascript for DropDown Actions to work -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+			<script src="insertionSort.js"></script>
+			<script src="quickSort.js"></script>
+
+  </body>
+</html>

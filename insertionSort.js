@@ -36,9 +36,10 @@ $(".insertionSort").click(async function(){
     // disableSortingBtn();
     // disableSizeSlider();
     // disableNewArrayBtn();
-		startNoise();
+		startStopNoise();
     await insertionSort();
 		source.frequency.value = 0;
+		//startStopNoise();
 		source.stop(0);
     // enableSortingBtn();
     // enableSizeSlider();

@@ -5,8 +5,8 @@ bins.on('input', function() {
 });
 
 // default delay
-var delay = 200;
 var speed = $("#speed");
+var delay = 800 - parseInt(speed.val());
 speed.on('input', function() {
 	delay = 800 - parseInt(speed.val());
 });
@@ -42,11 +42,17 @@ var sound = $("#sound");
 var SOUND_ON = sound.is(":checked");
 sound.click(function() {
     SOUND_ON = !SOUND_ON;
+		startStopNoise();
 });
 
 var source;
-function startNoise() {
-	if (!SOUND_ON) {return;};
+function startStopNoise() {
+	if (!SOUND_ON) {
+		if (source) { //source is defined (and likely playing)
+			source.stop(0);
+		}
+		return;
+	};
 
 	try {
 		window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -132,7 +138,7 @@ function deleteChild() {
 	boxes.html("")
 }
 
-function displayArray(n = 30, max = 100, fn = randomArrayGenerator) {
+function displayArray(n = bins.val(), max = 100, fn = randomArrayGenerator) {
 	deleteChild()
 
 	arr = fn(n, max)

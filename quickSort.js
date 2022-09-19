@@ -55,11 +55,12 @@ $(".quickSort").click(async function(){
     // disableSortingBtn();
     // disableSizeSlider();
     // disableNewArrayBtn();
-		startNoise();
+		startStopNoise();
 		const arr = $(".box-item");
 		console.log(arr);
     await quickSort(arr, 0, arr.length - 1);
 		source.frequency.value = 0;
+		//startStopNoise();
 		source.stop(0);
     // enableSortingBtn();
     // enableSizeSlider();

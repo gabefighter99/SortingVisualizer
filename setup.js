@@ -1,3 +1,52 @@
+// color wheels:
+var defCol = '#0ff' // (cyan)
+var succCol = '#f0f' // (magenta)
+var compCol = '#ff0' // (yellow)
+var pivCol = '#0f0' // green
+var pivCol2 = '#FF8000' // orange
+
+
+//Matrix
+const canvas = document.getElementById('Matrix');
+const context = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const katakana = 'アァカサタナハマヤャラワガザダバパ';
+const latin = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789@#$%^&*()*&^%+-/~{[|`]}';
+const binary = '010101010101001010101010101010101010101010101010101010101010101010101010101'
+const space = '          ';
+
+const alphabet = katakana + latin + nums + binary + space;
+const fontSize = 16;
+const columns = canvas.width/fontSize;
+
+rainDrops = Array.from({ length: columns }).fill(canvas.height);
+
+const draw = () => {
+    context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    context.fillStyle = '#0ff';
+    context.font = fontSize + 'px monospace';
+
+    for(let i = 0; i < rainDrops.length; i++)
+    {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        context.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+
+        if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
+            rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+    }
+};
+setInterval(draw, 40);
+
+
+
+
 //range
 var bins = $("#arrSize")
 bins.on('input', function() {
@@ -27,8 +76,8 @@ function swapH(a, b){
 	let tmp = a.style.height;
 	a.style.height = b.style.height;
 	b.style.height = tmp;
-	play_note(a.style.height);
-	play_note(b.style.height);
+	play_note(0, a.style.height);
+	play_note(1, b.style.height);
 }
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -38,42 +87,80 @@ function getRandomInt(max) {
 
 //Sound
 var fst = true;
+var audioCtx;
 var sound = $("#sound");
 var SOUND_ON = sound.is(":checked");
 sound.click(function() {
     SOUND_ON = !SOUND_ON;
+		if (fst) {
+			try {
+				window.AudioContext = window.AudioContext || window.webkitAudioContext;
+				audioCtx = new AudioContext();
+			}
+			catch(e) {
+				alert('Web Audio API is not supported in this browser');
+			}
+		}
 		startStopNoise();
 });
 
-var source;
-function startStopNoise() {
-	if (!SOUND_ON) {
-		if (source) { //source is defined (and likely playing)
-			source.stop(0);
+// var sources = [];
+var sources;
+
+function startStopNoise(off = false) {
+	if (!SOUND_ON || off) { //either sound is turned off, or we wanna turn it off
+		// if (sources.length > 0) { //source is defined (and playing)
+		// 	sources[0].stop(0);
+		// 	sources[1].stop(0);
+		// 	sources = [];
+		// }
+		if (sources) { //source is defined (and playing)
+			sources.stop(0);
 		}
 		return;
 	};
+	// try {
+	// 	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	// 	var audioCtx = new AudioContext();
+	// }
+	// catch(e) {
+	// 	alert('Web Audio API is not supported in this browser');
+	// }
+	sources = audioCtx.createOscillator();
+	var gainNode = audioCtx.createGain();
+	sources.connect(gainNode);
+	gainNode.connect(audioCtx.destination);
+	sources.type = "triangle";
+	gainNode.gain.value = 0.05;
+	// sources.connect(audioCtx.destination);
+	sources.frequency.value = 0;
+	sources.start(0);
 
-	try {
-		window.AudioContext = window.AudioContext || window.webkitAudioContext;
-		var audioCtx = new AudioContext();
-	}
-	catch(e) {
-		alert('Web Audio API is not supported in this browser');
-	}
-	source = audioCtx.createOscillator();
-	source.type = "triangle";
-	source.connect(audioCtx.destination);
-	source.frequency.value = 0;
-	source.start(0);
+	// for (let i = 0; i < 2; i++) {
+	// 	// try {
+	// 	// 	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	// 	// 	var audioCtx = new AudioContext();
+	// 	// }
+	// 	// catch(e) {
+	// 	// 	alert('Web Audio API is not supported in this browser');
+	// 	// }
+	// 	source = audioCtx.createOscillator();
+	// 	source.type = "triangle";
+	// 	source.connect(audioCtx.destination);
+	// 	source.frequency.value = 0;
+	// 	source.start(0);
+	// 	sources.push(source);
+	// }
 }
 
-function play_note(val){
-	console.log("playing");
+function play_note(i, val){
+	//console.log("playing");
 	if (!SOUND_ON) {return;}
 	var freq = parseInt(val) * 3 + 100;
-	console.log(freq);
-	source.frequency.value = freq; // value in hertz
+	//console.log(freq);
+	sources.frequency.value = freq >= 100 ? freq : 0; // value in hertz
+	// sources[i].frequency.value = freq > 100 ? freq : 0; // value in hertz
+
 }
 
 

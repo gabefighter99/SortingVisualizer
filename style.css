@@ -1,7 +1,27 @@
 * {
+	font-family: 'Orbitron', sans-serif;
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+
+/* @font-face{
+ font-family: 'Orbitron', sans-serif;
+} */
+
+#Matrix {
+	z-index: -1;
+}
+
+.innerDiv {
+	position: absolute;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+}
+
+.navbar {
+	background-color: rgb(0,0,0,0.75);
 }
 
 .navbar-nav{
@@ -16,6 +36,7 @@
 }
 
 .navbar-nav > button{
+	background-color: rgb(0,0,0,0);
   margin: 2px;
 	width: fit-content;
 	margin-left: auto;
@@ -45,8 +66,8 @@
 }
 
 .box-item {
-	background: magenta;
-	border-radius: 3px;
+	background: cyan;
+	border-radius: 2px;
 	border: 1pt solid black;
 	width: 20px;
 	transition: 0.1s all ease;

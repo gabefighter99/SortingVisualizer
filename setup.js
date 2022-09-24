@@ -28,7 +28,7 @@ const draw = () => {
     context.fillStyle = 'rgba(0, 0, 0, 0.05)';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    context.fillStyle = '#0ff';
+    context.fillStyle = 'rgba(0, 100, 100, 0.9)' //'#0ff';
     context.font = fontSize + 'px monospace';
 
     for(let i = 0; i < rainDrops.length; i++)
@@ -245,4 +245,38 @@ function displayArray(n = bins.val(), max = 100, fn = randomArrayGenerator) {
 		// elem.append(elemLabel)
 		disArr.append(elem);
 	}
+}
+
+
+
+// Enable/Disable
+
+// Disables sorting buttons used in conjunction with enable, so that we can disable during sorting and enable buttons after it
+function disableAll(){
+	$(".insertionSort").prop("disabled", true);
+	// $(".selectionSort").prop("disabled", true);
+	$(".mergeSort").prop("disabled", true);
+	$(".quickSort").prop("disabled", true);
+	$(".radixSort").prop("disabled", true);
+	// $(".bucketSort").prop("disabled", true);
+  $(".heapSort").prop("disabled", true);
+	newArray.prop("disabled", true);
+	hiDupArray.prop("disabled", true);
+	nearlySortedArray.prop("disabled", true);
+	bins.prop("disabled", true);
+}
+
+// Enables sorting buttons used in conjunction with disable
+function enableAll(){
+	$(".insertionSort").prop("disabled", false);
+	// $(".selectionSort").prop("disabled", false);
+	$(".mergeSort").prop("disabled", false);
+	$(".quickSort").prop("disabled", false);
+	$(".radixSort").prop("disabled", false);
+	// $(".bucketSort").prop("disabled", false);
+  $(".heapSort").prop("disabled", false);
+	newArray.prop("disabled", false);
+	hiDupArray.prop("disabled", false);
+	nearlySortedArray.prop("disabled", false);
+	bins.prop("disabled", false);
 }

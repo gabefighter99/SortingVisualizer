@@ -81,15 +81,11 @@ async function mergeSort(arr, lo, hi) {
 }
 
 $(".mergeSort").click(async function(){
-    // disableSortingBtn();
-    // disableSizeSlider();
-    // disableNewArrayBtn();
+    disableAll();
 		startStopNoise();
 		const arr = $(".box-item");
 		console.log(arr);
     await mergeSort(arr, 0, arr.length - 1);
 		startStopNoise(true);
-    // enableSortingBtn();
-    // enableSizeSlider();
-    // enableNewArrayBtn();
+    enableAll();
 });

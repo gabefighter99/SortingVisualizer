@@ -34,13 +34,9 @@ async function insertionSort(){
 
 
 $(".insertionSort").click(async function(){
-    // disableSortingBtn();
-    // disableSizeSlider();
-    // disableNewArrayBtn();
+		disableAll();
 		startStopNoise();
     await insertionSort();
 		startStopNoise(true);
-    // enableSortingBtn();
-    // enableSizeSlider();
-    // enableNewArrayBtn();
+		enableAll();
 });

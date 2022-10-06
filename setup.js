@@ -46,18 +46,31 @@ setInterval(draw, 40);
 
 
 
+//Sliders
 
 //range
 var bins = $("#arrSize")
-bins.on('input', function() {
-	displayArray(bins.val(), 100);
-});
-
 // default delay
 var speed = $("#speed");
+
+function updateGradient(slider, rangeValue) {
+  const percentage = (rangeValue - slider.prop('min')) / (slider.prop('max') - slider.prop('min')) * 100;
+  slider.css('--percentage', percentage + '%');
+}
+
+// Update gradient onload
+updateGradient(bins, bins.val());
+updateGradient(speed, speed.val());
+
+bins.on('input', function() {
+	displayArray(bins.val(), 100);
+	updateGradient(bins, bins.val());
+});
+
 var delay = 800 - parseInt(speed.val());
 speed.on('input', function() {
 	delay = 800 - parseInt(speed.val());
+	updateGradient(speed, speed.val());
 });
 
 
@@ -260,6 +273,7 @@ function disableAll(){
 	$(".radixSort").prop("disabled", true);
 	// $(".bucketSort").prop("disabled", true);
   $(".heapSort").prop("disabled", true);
+	$(".parQuickSort").prop("disabled", true);
 	newArray.prop("disabled", true);
 	hiDupArray.prop("disabled", true);
 	nearlySortedArray.prop("disabled", true);
@@ -275,6 +289,7 @@ function enableAll(){
 	$(".radixSort").prop("disabled", false);
 	// $(".bucketSort").prop("disabled", false);
   $(".heapSort").prop("disabled", false);
+	$(".parQuickSort").prop("disabled", false);
 	newArray.prop("disabled", false);
 	hiDupArray.prop("disabled", false);
 	nearlySortedArray.prop("disabled", false);

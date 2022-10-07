@@ -63,7 +63,7 @@ updateGradient(bins, bins.val());
 updateGradient(speed, speed.val());
 
 bins.on('input', function() {
-	displayArray(bins.val(), 100);
+	displayArray(bins.val(), 50);
 	updateGradient(bins, bins.val());
 });
 
@@ -193,7 +193,7 @@ hiDupArray.click(function(){
 	displayArray(bins.val(), 100, highDuplicatesArrayGenerator);
 })
 function highDuplicatesArrayGenerator(n, max) {
-  res = Array.from({length: n}, () => getRandomInt(10) + 25);
+  res = Array.from({length: n}, () => getRandomInt(4) + 75);
 	return res
 }
 

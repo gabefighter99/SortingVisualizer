@@ -3,7 +3,9 @@
 A fun project that visualizes (and audibilizes!) some popular sorting algorithms. Link:
 
 
-Miscallaneous: I almost blew an eardrum when I first added sound. Have fixed the volume since. Spent way too long trying to figure out a parallelized Div-And-Conq algorithm implementation, but have since given up (damn single-threadedness. I dare you to say web workers).
+Miscallaneous: 
+* I almost blew an eardrum when I first added sound. Have since fixed the volume
+* Spent way too long trying to figure out a parallelized Div-And-Conq algorithm implementation, but have since given up (damn single-threadedness. I dare you to say web workers)
 
 Key takeaways: 
 * There are some rly smart sorting algos out there

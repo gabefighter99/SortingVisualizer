@@ -2,7 +2,7 @@
 
 A fun project that visualizes (and audibilizes!) some popular sorting algorithms. Link:
 
-https://gabefighter99.github.io/SortingVisualizer/
+https://gabefighter99.github.io/SortingVisualizer/ (ignore the username, I was young)
 
 Miscallaneous: 
 * I almost blew an eardrum when I first added sound. Have since fixed the volume

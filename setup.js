@@ -63,7 +63,7 @@ updateGradient(bins, bins.val());
 updateGradient(speed, speed.val());
 
 bins.on('input', function() {
-	displayArray(bins.val(), 50);
+	displayArray(bins.val(), 100);
 	updateGradient(bins, bins.val());
 });
 
@@ -231,7 +231,7 @@ function nearlySortedArrayGenerator(n, max) {
 
 // Array Display
 var disArr = $(".box")
-displayArray()
+displayArray(75)
 
 function deleteChild() {
 	var boxes = $(".box")
